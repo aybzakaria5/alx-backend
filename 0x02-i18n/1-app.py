@@ -1,31 +1,26 @@
 #!/usr/bin/env python3
-"""usingi18n"""
-from flask import Flask
+""" using babel in task 1 """
+from flask import Flask, render_template
 from flask_babel import Babel
 
-# Create Flask app
-app = Flask(__name__)
 
+class Config(object):
+    """class with configs for time /lng"""
 
-# Create Config class
-class Config:
-    """class to config lang and loc"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
-# Set Config as app's config
+app = Flask(__name__)
 app.config.from_object(Config)
-
-# Instantiate Babel object
 babel = Babel(app)
 
 
-@app.rout("/")
+@app.route("/")
 def index():
-    """rendering 1-index.html"""
-    render_template("1-index.html")
+    """rendering"""
+    return render_template("1-index.html")
 
 
 if __name__ == "__main__":
